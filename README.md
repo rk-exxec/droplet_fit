@@ -1,5 +1,5 @@
 # Sessile droplet fitting  
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7464097.svg)](https://doi.org/10.5281/zenodo.7464097)  
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7464096.svg)](https://doi.org/10.5281/zenodo.7464096)  
 ## Setup environment
 
 - Install Python (tested with 3.9)
