@@ -1,11 +1,34 @@
-# GUI for testing
+#     droplet fitting program for magnetoactive surfaces
+#     Copyright (C) 2022  Raphael Kriegl
 
+#     This program is free software: you can redistribute it and/or modify
+#     it under the terms of the GNU General Public License as published by
+#     the Free Software Foundation, either version 3 of the License, or
+#     (at your option) any later version.
+
+#     This program is distributed in the hope that it will be useful,
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#     GNU General Public License for more details.
+
+#     You should have received a copy of the GNU General Public License
+#     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+################################
+# adjust these values
+filename = 'test_polar.png'
+baseline = 650
+mask = [674,-78, 120, 1049]
+contour_lim = (4,400)
+fit_type = "polar"
+
+################################
+# GUI code
 import sys
 import numpy as np
 import cv2
 
-from PySide6.QtWidgets import QMainWindow, QHBoxLayout, QLabel, QApplication
-from PySide6.QtCore import QPoint
+from PySide6.QtWidgets import QMainWindow, QHBoxLayout, QApplication
 from PySide6.QtGui import QPixmap, QPaintEvent, QPainter, QImage, Qt, QBrush, QPen
 from droplet import Droplet
 
@@ -112,14 +135,6 @@ class Window(QMainWindow):
     
 # main function:
 if __name__ == "__main__":
-    # adjust these values
-    filename = 'test_polar.png'
-    baseline = 650
-    mask = [674,-78, 120, 1049]
-    contour_lim = (4,400)
-    fit_type = "polar"
-
-
     im = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
     im = np.reshape(im, im.shape + (1,) )
     (h,w,d) = np.shape(im)
@@ -135,4 +150,3 @@ if __name__ == "__main__":
     window.show()
     sys.exit(app.exec())
 
-   
