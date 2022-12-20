@@ -5,7 +5,7 @@ authors:
   given-names: "Raphael"
   orcid: "https://orcid.org/0000-0001-9167-2635"
 title: "droplet_fit"
-version: 1.0.0
-doi: 10.5281/zenodo.1234
-date-released: 2022-12-14
-url: "https://github.com/rk-exxec/droplet_fit"
+version: v1.0a
+doi: 10.5281/zenodo.7464097
+date-released: 2022-12-120
+url: "https://github.com/rk-exxec/sessile_droplet_fitting"
