@@ -277,26 +277,3 @@ def find_contour(img: np.ndarray, is_masked: bool, divider):
         left = np.array(left)
         right = np.array(right)
         return contour, Contour(left, True), Contour(right,True), divider
-
-
-# main function:
-if __name__ == "__main__":
-    # adjust these values
-    filename = 'test_polar.png'
-    baseline = 650
-    mask = [674,-78, 120, 1049]
-    contour_lim = (4,400)
-    fit_type = "polar"
-
-
-    im = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
-    im = np.reshape(im, im.shape + (1,) )
-    (h,w,d) = np.shape(im)
-
-    try:
-        drp = evaluate_droplet(im, baseline, mask=mask, contour_lim=contour_lim, fit_type=fit_type,  weighted_fit=False)
-        print(drp)
-    except Exception as ex:
-        print(ex)
-
-   
