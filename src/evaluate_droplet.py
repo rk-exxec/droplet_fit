@@ -39,9 +39,7 @@ def evaluate_droplet(img, y_base, mask: tuple[int,int,int,int] = None, divider: 
         "ellipse". approcimates droplet with single ellipse 
         "ell_splt": uses 2 ellipses to fit each side 
         "spline": uses cubic splines to approximate contour 
-        "poly": uses polynomes to approximate contours 
         "polar": polar polynomial fit for each side 
-        "tangent": uses tangent fit for both sides 
     :param contour_lim: sets the start point and length of the used contour, used to limit the points used for fitting
     :param cutoff_top: start y coordinate to cut top of image
     :param weighted_fit: whether to use a weighted fit, not supported by all methods. Points closer to contact line are weighted more
@@ -54,12 +52,8 @@ def evaluate_droplet(img, y_base, mask: tuple[int,int,int,int] = None, divider: 
         fit_class = EllipseFit
     elif fit_type == "spline":
         fit_class = SplineFit
-    elif fit_type == "poly":
-        fit_class = PolyFit
     elif fit_type == "polar":
         fit_class = RobustPolarPolyFit
-    elif fit_type == "tangent":
-        fit_class = TangentFit
     elif fit_type == "contour": # only detect contour
         fit_class = None
     else:
@@ -285,17 +279,22 @@ def find_contour(img: np.ndarray, is_masked: bool, divider):
         return contour, Contour(left, True), Contour(right,True), divider
 
 
-# for testing purposes:
+# main function:
 if __name__ == "__main__":
-    im = cv2.imread('test_polar.png', cv2.IMREAD_GRAYSCALE)
+    # adjust these values
+    filename = 'test_polar.png'
+    baseline = 650
+    mask = [674,-78, 120, 1049]
+    contour_lim = (4,400)
+    fit_type = "polar"
+
+
+    im = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
     im = np.reshape(im, im.shape + (1,) )
     (h,w,d) = np.shape(im)
 
-    y_base = 650
-    mask = [674,-78, 120, 1049]
-
     try:
-        drp = evaluate_droplet(im, y_base, mask=mask, contour_lim=(4,400), fit_type="polar",  weighted_fit=True)
+        drp = evaluate_droplet(im, baseline, mask=mask, contour_lim=contour_lim, fit_type=fit_type,  weighted_fit=False)
         print(drp)
     except Exception as ex:
         print(ex)

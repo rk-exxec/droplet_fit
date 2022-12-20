@@ -19,20 +19,16 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 import enum
 import logging
-from math import  cos, sin, sqrt, radians, degrees
-from typing import Callable
+from math import  cos, sin, radians, degrees
+
 from PySide6.QtGui import QPainter, QPen, Qt, QPolygonF
 from PySide6.QtCore import QPointF
 
-import numba as nb
 from numpy.polynomial import Polynomial
 import numpy as np
 from scipy.interpolate import CubicSpline, PPoly
 from scipy.optimize import root, OptimizeResult
-from skimage.measure import ransac
-from skimage.measure import EllipseModel
 from skimage.transform import AffineTransform
-import scipy.linalg as sl
 import cv2
 
 from contour import Contour, ContourError

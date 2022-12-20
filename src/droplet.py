@@ -14,12 +14,9 @@
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from math import degrees
 from PySide6.QtCore import QSettings
 import logging
 import inspect
-
-from numpy.lib.function_base import angle
 
 from contour import Contour
 from fit_classes import IFitCurve
